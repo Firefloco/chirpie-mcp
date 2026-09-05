@@ -8,6 +8,10 @@ export default defineConfig({
   clean: true,
   target: "node18",
   banner: { js: "#!/usr/bin/env node" },
+  // @chirpie/mcp-core is a private, source-only workspace package shared with
+  // the hosted server. Bundle it into dist so the published package has no
+  // unresolvable dependency.
+  noExternal: ["@chirpie/mcp-core"],
   // Inline the real package version so the MCP server can advertise it
   // instead of a stale hardcoded value.
   define: {

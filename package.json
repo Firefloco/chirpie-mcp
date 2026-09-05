@@ -1,6 +1,6 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "mcpName": "io.github.firefloco/chirpie",
   "description": "Chirpie MCP server — social media tools for AI agents",
   "repository": {
@@ -52,9 +52,10 @@
   "dependencies": {
     "@chirpie/sdk": "workspace:*",
     "@modelcontextprotocol/sdk": "^1",
-    "zod": "^3.24.4"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@chirpie/mcp-core": "workspace:*",
     "tsup": "^8",
     "typescript": "^5"
   }
