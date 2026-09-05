@@ -1,6 +1,6 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.0.22",
+  "version": "1.0.25",
   "mcpName": "io.github.Firefloco/chirpie",
   "description": "Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.",
   "repository": {

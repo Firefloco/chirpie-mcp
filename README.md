@@ -1,6 +1,6 @@
 # @chirpie/mcp
 
-**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram — posting, threads, scheduling, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
 
 ## Hosted server (recommended)
 
@@ -10,7 +10,7 @@ You don't need to install anything. Point your client at:
 https://chirpie.ai/mcp
 ```
 
-Sign in when prompted and you're connected — no API key to copy, nothing to keep up to date.
+Sign in when prompted and you're connected. No API key to copy, nothing to keep up to date.
 
 **Claude Code**
 
@@ -18,9 +18,9 @@ Sign in when prompted and you're connected — no API key to copy, nothing to ke
 claude mcp add --transport http chirpie https://chirpie.ai/mcp
 ```
 
-**Claude** — Settings → Connectors → Add custom connector → `https://chirpie.ai/mcp`
+**Claude**: Settings → Connectors → Add custom connector → `https://chirpie.ai/mcp`
 
-**Cursor** — add to `.cursor/mcp.json`:
+**Cursor**: add to `.cursor/mcp.json`:
 
 ```json
 {
@@ -32,7 +32,7 @@ claude mcp add --transport http chirpie https://chirpie.ai/mcp
 }
 ```
 
-**ChatGPT** — Settings → Connectors → Create → MCP server → `https://chirpie.ai/mcp`
+**ChatGPT**: Settings → Connectors → Create → MCP server → `https://chirpie.ai/mcp`
 
 Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
 
@@ -63,7 +63,7 @@ chirpie login
 claude mcp add chirpie -- npx @chirpie/mcp
 ```
 
-**Claude Desktop** — `~/Library/Application Support/Claude/claude_desktop_config.json`:
+**Claude Desktop**: `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
@@ -76,7 +76,7 @@ claude mcp add chirpie -- npx @chirpie/mcp
 }
 ```
 
-**Cursor** — add to your MCP settings:
+**Cursor**: add to your MCP settings:
 
 ```json
 {
@@ -124,7 +124,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 
 The hosted and local servers expose exactly the same tools. On the hosted server,
 `chirpie_create_key`, `chirpie_list_keys`, `chirpie_revoke_key` and
-`chirpie_remove_x_keys` require API-key auth — sign in with OAuth and they are not
+`chirpie_remove_x_keys` require API-key auth. Sign in with OAuth and they are not
 offered, since an OAuth connection must not leave a long-lived key behind or tear
 down credentials your other connections depend on.
 
@@ -139,9 +139,9 @@ Once connected, ask your agent:
 
 ## Links
 
-- Docs — https://chirpie.ai/docs/mcp
-- API reference — https://chirpie.ai/docs
-- Dashboard — https://chirpie.ai/dashboard
+- Docs: https://chirpie.ai/docs/mcp
+- API reference: https://chirpie.ai/docs
+- Dashboard: https://chirpie.ai/dashboard
 
 MIT © Fireflo LLC
 
