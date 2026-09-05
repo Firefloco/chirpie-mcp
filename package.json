@@ -1,8 +1,8 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "mcpName": "io.github.Firefloco/chirpie",
-  "description": "Chirpie MCP server — social media tools for AI agents",
+  "description": "Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firefloco/chirpie",

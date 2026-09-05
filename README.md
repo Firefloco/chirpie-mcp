@@ -1,6 +1,6 @@
 # @chirpie/mcp
 
-**Give your AI agent a voice on social media.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram — posting, threads, scheduling, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram — posting, threads, scheduling, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
 
 ## Hosted server (recommended)
 
@@ -118,8 +118,15 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_connect_bluesky` | Connect Bluesky with an app password |
 | `chirpie_connect_mastodon` | Connect Mastodon on any instance |
 | `chirpie_connect_telegram` | Connect a Telegram bot |
+| `chirpie_set_x_keys` | Register your own X developer app for connecting X accounts |
+| `chirpie_get_x_keys_status` | Check whether your own X developer app is configured |
+| `chirpie_remove_x_keys` | Remove your own X developer app |
 
-The hosted and local servers expose exactly the same tools.
+The hosted and local servers expose exactly the same tools. On the hosted server,
+`chirpie_create_key`, `chirpie_list_keys`, `chirpie_revoke_key` and
+`chirpie_remove_x_keys` require API-key auth — sign in with OAuth and they are not
+offered, since an OAuth connection must not leave a long-lived key behind or tear
+down credentials your other connections depend on.
 
 ## Try it
 
