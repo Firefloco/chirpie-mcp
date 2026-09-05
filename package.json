@@ -1,7 +1,7 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.0.12",
-  "mcpName": "io.github.firefloco/chirpie",
+  "version": "1.0.14",
+  "mcpName": "io.github.Firefloco/chirpie",
   "description": "Chirpie MCP server — social media tools for AI agents",
   "repository": {
     "type": "git",

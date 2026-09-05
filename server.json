@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.firefloco/chirpie",
+  "name": "io.github.Firefloco/chirpie",
   "title": "Chirpie",
   "description": "Post, schedule, and track social media across 14 platforms from your AI agent.",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "websiteUrl": "https://chirpie.ai/docs/mcp",
   "repository": {
     "url": "https://github.com/Firefloco/chirpie-mcp",
@@ -22,7 +22,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@chirpie/mcp",
-      "version": "1.0.11",
+      "version": "1.0.14",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
