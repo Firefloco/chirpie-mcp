@@ -113,7 +113,8 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_list_keys` | List API keys |
 | `chirpie_revoke_key` | Revoke an API key |
 | `chirpie_connect_x` | Connect X/Twitter (returns an authorization link) |
-| `chirpie_connect_linkedin` | Connect LinkedIn |
+| `chirpie_connect_linkedin` | Connect a LinkedIn profile |
+| `chirpie_connect_linkedin_pages` | Connect the LinkedIn Pages you administer (coming soon) |
 | `chirpie_connect_threads` | Connect Threads |
 | `chirpie_connect_instagram` | Connect Instagram |
 | `chirpie_connect_facebook` | Connect a Facebook Page |
