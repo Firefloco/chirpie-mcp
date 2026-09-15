@@ -115,9 +115,9 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_connect_x` | Connect X/Twitter (returns an authorization link) |
 | `chirpie_connect_linkedin` | Connect a LinkedIn profile |
 | `chirpie_connect_linkedin_pages` | Connect the LinkedIn Pages you administer (coming soon) |
-| `chirpie_connect_threads` | Connect Threads |
-| `chirpie_connect_instagram` | Connect Instagram |
-| `chirpie_connect_facebook` | Connect a Facebook Page |
+| `chirpie_connect_threads` | Connect Threads (coming soon) |
+| `chirpie_connect_instagram` | Connect Instagram (coming soon) |
+| `chirpie_connect_facebook` | Connect a Facebook Page (coming soon) |
 | `chirpie_connect_bluesky` | Connect Bluesky with an app password |
 | `chirpie_connect_mastodon` | Connect Mastodon on any instance |
 | `chirpie_connect_telegram` | Connect a Telegram bot |
