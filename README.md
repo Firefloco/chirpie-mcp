@@ -108,6 +108,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_list_accounts` | List connected social accounts, active and inactive |
 | `chirpie_activate_account` | Activate an account so it can publish |
 | `chirpie_deactivate_account` | Deactivate an account (stays connected, frees a plan slot) |
+| `chirpie_disconnect_account` | Disconnect an account (ends the connection, cancels its scheduled posts, frees a plan slot) |
 | `chirpie_analytics` | Engagement metrics for a published post |
 | `chirpie_create_key` | Create an API key |
 | `chirpie_list_keys` | List API keys |
