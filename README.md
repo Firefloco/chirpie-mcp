@@ -106,6 +106,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
 | `chirpie_get_post` | Fetch one post |
 | `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it |
+| `chirpie_retry_first_comment` | Post a first comment that failed, again |
 | `chirpie_delete_post` | Take a post down from the platform. Chirpie keeps it, marked deleted |
 | `chirpie_hide_post` | Hide a post from your Chirpie listings. Nothing reaches the platform |
 | `chirpie_unhide_post` | Put a hidden post back in your listings |
@@ -145,6 +146,29 @@ account its own text, media or thread. The accounts that worked stay published
 when another one's platform refuses, so an agent should read `success` on each
 result. Pass the `group_id` to `chirpie_list_posts` to read the whole group
 back.
+
+## First comment
+
+`chirpie_post` and `chirpie_thread` take `first_comment`, a comment published
+under the post the moment it goes out. On a thread it is one comment for the
+whole thread, published under the last part. X, Threads, Instagram and Facebook
+only: anywhere else the call is refused with `400 first_comment_unsupported`
+rather than the comment dropped. It counts as one post against the monthly
+quota.
+
+On a multi-account call the shared `first_comment` reaches every account unless
+its `account_configurations` entry says otherwise: an entry naming a
+`first_comment` replaces it for that account, and `"first_comment": ""`
+publishes that account with none, which is how one call sends a first comment
+to the accounts that take one while an account whose platform has none still
+publishes the post.
+
+Every post carries `first_comment` back, either `null` or
+`{ text, status, comment_id, error }`, with `status` one of `pending`, `posted`
+and `failed`. A failed first comment never fails its post, so a published post
+can be carrying one that did not go out: `chirpie_retry_first_comment` sends it
+again, and `chirpie_update_post` changes the text or, with an empty string,
+removes it.
 
 ## Drafts
 
