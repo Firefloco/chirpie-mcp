@@ -100,6 +100,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 
 | Tool | What it does |
 |------|--------------|
+| `chirpie_upload_media` | Upload an image or video and get the id a post can attach |
 | `chirpie_post` | Post to any connected account, now or scheduled |
 | `chirpie_thread` | Post a 2–25 part thread |
 | `chirpie_list_posts` | List posts, filtered by status or account |
