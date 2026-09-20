@@ -104,6 +104,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_thread` | Post a 2–25 part thread |
 | `chirpie_list_posts` | List posts, filtered by status or account |
 | `chirpie_get_post` | Fetch one post |
+| `chirpie_update_post` | Edit a post that has not published yet: text, media, or time |
 | `chirpie_delete_post` | Delete a post (and remove it from the platform) |
 | `chirpie_list_accounts` | List connected social accounts, active and inactive |
 | `chirpie_activate_account` | Activate an account so it can publish |
