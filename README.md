@@ -1,6 +1,6 @@
 # @chirpie/mcp
 
-**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
 
 ## Hosted server (recommended)
 
@@ -101,11 +101,11 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | Tool | What it does |
 |------|--------------|
 | `chirpie_upload_media` | Upload an image or video and get the id a post can attach |
-| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once |
-| `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once |
+| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `draft` saves it instead |
+| `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. `draft` saves it instead |
 | `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
 | `chirpie_get_post` | Fetch one post |
-| `chirpie_update_post` | Edit a post that has not published yet: text, media, or time |
+| `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it |
 | `chirpie_delete_post` | Delete a post (and remove it from the platform) |
 | `chirpie_list_accounts` | List connected social accounts, active and inactive |
 | `chirpie_activate_account` | Activate an account so it can publish |
@@ -144,6 +144,19 @@ when another one's platform refuses, so an agent should read `success` on each
 result. Pass the `group_id` to `chirpie_list_posts` to read the whole group
 back.
 
+## Drafts
+
+`draft: true` on `chirpie_post` or `chirpie_thread` saves the content and sends
+nothing: no platform call, no quota, and a draft never publishes on its own. A
+draft is held to far less than a post, so the text may be empty and a draft
+thread may be a single part, and the answer carries a `warnings` list saying,
+per account, what would go wrong if it were sent as it stands.
+
+Promote it with `chirpie_update_post`: `schedule_at` queues it, `publish: true`
+sends it now, and the two are never valid together. Promotion runs every rule a
+create runs and takes the quota, so anything refused leaves the draft exactly as
+it was.
+
 ## Try it
 
 Once connected, ask your agent:
@@ -151,6 +164,7 @@ Once connected, ask your agent:
 - "Post to X and LinkedIn: we just shipped v2, but keep the X one shorter."
 - "Draft a 5-post thread about why we moved off cron, and schedule it for 9am tomorrow."
 - "How did my last Bluesky post do?"
+- "Save that as a draft, I will pick the wording tomorrow."
 - "Connect my X account."
 
 ## Links
