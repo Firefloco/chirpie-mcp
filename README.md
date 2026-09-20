@@ -101,9 +101,9 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | Tool | What it does |
 |------|--------------|
 | `chirpie_upload_media` | Upload an image or video and get the id a post can attach |
-| `chirpie_post` | Post to any connected account, now or scheduled |
-| `chirpie_thread` | Post a 2–25 part thread |
-| `chirpie_list_posts` | List posts, filtered by status or account |
+| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once |
+| `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once |
+| `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
 | `chirpie_get_post` | Fetch one post |
 | `chirpie_update_post` | Edit a post that has not published yet: text, media, or time |
 | `chirpie_delete_post` | Delete a post (and remove it from the platform) |
@@ -134,11 +134,21 @@ The hosted and local servers expose exactly the same tools. On the hosted server
 offered, since an OAuth connection must not leave a long-lived key behind or tear
 down credentials your other connections depend on.
 
+## Several accounts in one call
+
+`chirpie_post` and `chirpie_thread` take `account_ids` in place of `account_id`,
+up to 25 of them. The answer is then a `group_id` plus one result per account,
+in the order they were named, and `account_configurations` gives a single
+account its own text, media or thread. The accounts that worked stay published
+when another one's platform refuses, so an agent should read `success` on each
+result. Pass the `group_id` to `chirpie_list_posts` to read the whole group
+back.
+
 ## Try it
 
 Once connected, ask your agent:
 
-- "Post to X and LinkedIn: we just shipped v2."
+- "Post to X and LinkedIn: we just shipped v2, but keep the X one shorter."
 - "Draft a 5-post thread about why we moved off cron, and schedule it for 9am tomorrow."
 - "How did my last Bluesky post do?"
 - "Connect my X account."
