@@ -100,13 +100,13 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 
 | Tool | What it does |
 |------|--------------|
-| `chirpie_upload_media` | Upload an image or video and get the id a post can attach |
-| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `draft` saves it instead |
-| `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. `draft` saves it instead |
+| `chirpie_upload_media` | Upload an image or video and get the id a post can attach. `idempotency_key` makes a retry safe |
+| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead |
+| `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. Takes `timezone` and `idempotency_key` too; `draft` saves it instead |
 | `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
 | `chirpie_get_post` | Fetch one post |
 | `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it |
-| `chirpie_retry_first_comment` | Post a first comment that failed, again |
+| `chirpie_retry_first_comment` | Post a first comment that failed, again. `idempotency_key` makes a retry safe |
 | `chirpie_delete_post` | Take a post down from the platform. Chirpie keeps it, marked deleted |
 | `chirpie_hide_post` | Hide a post from your Chirpie listings. Nothing reaches the platform |
 | `chirpie_unhide_post` | Put a hidden post back in your listings |
@@ -114,8 +114,8 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_activate_account` | Activate an account so it can publish |
 | `chirpie_deactivate_account` | Deactivate an account (stays connected, frees a plan slot) |
 | `chirpie_disconnect_account` | Disconnect an account (ends the connection, cancels its scheduled posts, frees a plan slot) |
-| `chirpie_analytics` | Engagement metrics for a published post |
-| `chirpie_create_key` | Create an API key |
+| `chirpie_analytics` | Engagement metrics for a published post. `refresh` asks the platform now instead of reading the stored snapshot, once per post every 30 minutes |
+| `chirpie_create_key` | Create an API key, optionally narrowed with `scopes` so it can do less than yours |
 | `chirpie_list_keys` | List API keys |
 | `chirpie_revoke_key` | Revoke an API key |
 | `chirpie_connect_x` | Connect X/Twitter (returns an authorization link) |
