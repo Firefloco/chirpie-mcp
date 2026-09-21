@@ -101,11 +101,11 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | Tool | What it does |
 |------|--------------|
 | `chirpie_upload_media` | Upload an image or video and get the id a post can attach. `idempotency_key` makes a retry safe |
-| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead |
+| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `configuration` publishes it as a story or a reel instead of a feed post; `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead |
 | `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. Takes `timezone` and `idempotency_key` too; `draft` saves it instead |
 | `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
 | `chirpie_get_post` | Fetch one post |
-| `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it |
+| `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it. `configuration` changes where it publishes |
 | `chirpie_retry_first_comment` | Post a first comment that failed, again. `idempotency_key` makes a retry safe |
 | `chirpie_delete_post` | Take a post down from the platform. Chirpie keeps it, marked deleted |
 | `chirpie_hide_post` | Hide a post from your Chirpie listings. Nothing reaches the platform |
@@ -169,6 +169,55 @@ and `failed`. A failed first comment never fails its post, so a published post
 can be carrying one that did not go out: `chirpie_retry_first_comment` sends it
 again, and `chirpie_update_post` changes the text or, with an empty string,
 removes it.
+
+## Stories, reels and other publishing options
+
+`chirpie_post`, `chirpie_thread` and `chirpie_update_post` take `configuration`,
+the per-platform publishing options, keyed by platform. Instagram takes a
+`feed` post, a `story` or a `reel`, and a Facebook Page takes a `feed` post or a
+`story`. Leave it out and everything publishes to the feed. Instagram and
+Facebook are coming soon.
+
+```json
+{
+  "account_id": "...",
+  "text": "Three minutes on how we schedule posts.",
+  "media_ids": ["..."],
+  "configuration": {
+    "instagram": {
+      "placement": "reel",
+      "video_cover_timestamp_ms": 1500,
+      "collaborators": ["a_co_author"],
+      "share_to_feed": true
+    }
+  }
+}
+```
+
+Each placement carries its own options:
+
+- `instagram` `feed`: up to 10 images, `collaborators` (at most 3 usernames)
+  and `user_tags`, each of which needs both `x` and `y`.
+- `instagram` `story`: exactly one image or video, no caption (send empty
+  text), no first comment and no collaborators. `user_tags` may carry
+  coordinates or leave them out.
+- `instagram` `reel`: exactly one video and no images, plus `collaborators`,
+  `user_tags` (the username on its own, since Instagram reads coordinates only
+  on images and stories), `cover` or `video_cover_timestamp_ms` but never both,
+  `share_to_feed` and `trial_reel`.
+- `facebook` `feed`: a `link`, shown as a preview.
+- `facebook` `story`: exactly one image or video, no text, no first comment
+  and no link.
+
+Nothing is dropped quietly: a block keyed on a platform that takes no options,
+or a field the chosen placement does not carry, is refused with
+`400 configuration_unsupported` naming the platform and the field. A story and a
+reel are each a single post, so `chirpie_thread` refuses either placement. On a
+multi-account call one block serves every account of that platform, and an
+`account_configurations` entry naming its own `configuration` replaces it for
+that account. On `chirpie_update_post` an absent `configuration` keeps the
+options the post already has, and `"configuration": {}` puts it back to a plain
+feed post.
 
 ## Drafts
 
