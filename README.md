@@ -122,7 +122,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_connect_linkedin` | Connect a LinkedIn profile |
 | `chirpie_connect_linkedin_pages` | Connect the LinkedIn Pages you administer (coming soon) |
 | `chirpie_connect_threads` | Connect Threads (coming soon) |
-| `chirpie_connect_instagram` | Connect Instagram (coming soon) |
+| `chirpie_connect_instagram` | Connect Instagram, `via` `instagram` (the default) or `facebook` (coming soon) |
 | `chirpie_connect_facebook` | Connect a Facebook Page (coming soon) |
 | `chirpie_connect_bluesky` | Connect Bluesky with an app password |
 | `chirpie_connect_mastodon` | Connect Mastodon on any instance |
@@ -218,6 +218,14 @@ multi-account call one block serves every account of that platform, and an
 that account. On `chirpie_update_post` an absent `configuration` keeps the
 options the post already has, and `"configuration": {}` puts it back to a plain
 feed post.
+
+An Instagram account connects one of two ways, and `chirpie_connect_instagram`
+takes `via` to pick: `instagram` (the default) signs in with Instagram, and
+`facebook` signs in with Facebook and connects the Instagram accounts linked to
+the Pages the user shares, several at once. Both publish identically, whatever
+the placement. The one difference is deleting a published post, which works on
+an account connected via Facebook and is refused with
+`501 delete_unsupported` on one connected through Instagram.
 
 ## Drafts
 
