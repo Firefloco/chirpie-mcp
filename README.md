@@ -225,7 +225,12 @@ takes `via` to pick: `instagram` (the default) signs in with Instagram, and
 the Pages the user shares, several at once. Both publish identically, whatever
 the placement. The one difference is deleting a published post, which works on
 an account connected via Facebook and is refused with
-`501 delete_unsupported` on one connected through Instagram.
+`501 delete_unsupported` on one connected through Instagram. Connecting an
+account that is already connected through the other route moves it rather than
+adding a second one: it keeps its id and everything it has published, and
+deleting is the only thing that changes hands. Where the two routes report
+different Instagram accounts you get a second account instead, so list the
+accounts again afterwards.
 
 ## Drafts
 
