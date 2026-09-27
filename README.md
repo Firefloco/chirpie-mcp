@@ -114,7 +114,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_activate_account` | Activate an account so it can publish |
 | `chirpie_deactivate_account` | Deactivate an account (stays connected, frees a plan slot) |
 | `chirpie_disconnect_account` | Disconnect an account (ends the connection, cancels its scheduled posts, frees a plan slot) |
-| `chirpie_analytics` | Engagement metrics for a published post. `refresh` asks the platform now instead of reading the stored snapshot, once per post every 30 minutes |
+| `chirpie_analytics` | Engagement metrics for a published post. `refresh` asks the platform now instead of reading the stored snapshot, once per post every 5 minutes |
 | `chirpie_create_key` | Create an API key, optionally narrowed with `scopes` so it can do less than yours |
 | `chirpie_list_keys` | List API keys |
 | `chirpie_revoke_key` | Revoke an API key |
