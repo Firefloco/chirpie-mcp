@@ -1,7 +1,7 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { ChirpieClient, getConfig } from "@chirpie/sdk";
-import { registerChirpieTools, type ChirpieApi } from "@chirpie/mcp-core";
+import type { ChirpieApi } from "@chirpie/mcp-core";
+import { createStdioServer } from "./server";
 
 // Resolve API key: env var → ~/.chirpie/config.json
 const config = getConfig();
@@ -18,19 +18,10 @@ function requireClient(): ChirpieApi {
   return client;
 }
 
-// Injected at build time by tsup from package.json
-declare const __PACKAGE_VERSION__: string;
-const SERVER_VERSION =
-  typeof __PACKAGE_VERSION__ !== "undefined" ? __PACKAGE_VERSION__ : "dev";
-
-const server = new McpServer({
-  name: "chirpie",
-  version: SERVER_VERSION,
-});
-
-// Tool definitions are shared with the hosted server at https://chirpie.ai/mcp
-// (see packages/mcp-core) so both surfaces stay in lockstep.
-registerChirpieTools(server, requireClient);
+// Tool definitions, server info and tool annotations are shared with the
+// hosted server at https://chirpie.ai/mcp (see packages/mcp-core) so both
+// surfaces stay in lockstep.
+const server = createStdioServer(requireClient);
 
 // Start
 const transport = new StdioServerTransport();

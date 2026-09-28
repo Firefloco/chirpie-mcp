@@ -137,6 +137,22 @@ The hosted and local servers expose exactly the same tools. On the hosted server
 offered, since an OAuth connection must not leave a long-lived key behind or tear
 down credentials your other connections depend on.
 
+## Which tools ask before they run?
+
+Every tool carries a title and the standard MCP tool annotations
+(`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`), so your
+client knows what a call does before it runs it. Listing and reading tools are
+read-only. Deleting a post or a comment, disconnecting or deactivating an
+account, editing a queued post, revoking a key and setting or removing your own
+X app are destructive, and clients such as Claude ask before running them unless you have allowed
+them.
+Hiding, unhiding and activating are neither: each has an exact undo. Creating
+tools are not marked idempotent: the ones that take an `idempotency_key` only
+make a retry safe when you pass one. Without a key, repeating `chirpie_post`,
+`chirpie_thread`, `chirpie_reply_to_comment` or `chirpie_retry_first_comment`
+can publish twice, and repeating `chirpie_upload_media` stores a second copy
+that expires unused.
+
 ## Several accounts in one call
 
 `chirpie_post` and `chirpie_thread` take `account_ids` in place of `account_id`,
