@@ -18,7 +18,7 @@ Sign in when prompted and you're connected. No API key to copy, nothing to keep 
 claude mcp add --transport http chirpie https://chirpie.ai/mcp
 ```
 
-**Claude**: Settings → Connectors → Add custom connector → `https://chirpie.ai/mcp`
+**Claude**: Customize → Connectors → + → Add custom connector → `https://chirpie.ai/mcp` ([guide](https://chirpie.ai/docs/mcp/claude))
 
 **Cursor**: add to `.cursor/mcp.json`:
 
