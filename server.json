@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Firefloco/chirpie",
   "title": "Chirpie",
-  "description": "Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.",
-  "version": "1.0.14",
+  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn and more.",
+  "version": "1.2.3",
   "websiteUrl": "https://chirpie.ai/docs/mcp",
   "repository": {
     "url": "https://github.com/Firefloco/chirpie-mcp",
@@ -11,6 +11,11 @@
     "id": "1358184069"
   },
   "icons": [
+    {
+      "src": "https://chirpie.ai/images/brand/icon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": ["any"]
+    },
     {
       "src": "https://chirpie.ai/images/brand/icon@2x.png",
       "mimeType": "image/png",
@@ -22,7 +27,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@chirpie/mcp",
-      "version": "1.0.14",
+      "version": "1.2.3",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

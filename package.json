@@ -1,8 +1,8 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "mcpName": "io.github.Firefloco/chirpie",
-  "description": "Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.",
+  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn and more.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firefloco/chirpie",

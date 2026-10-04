@@ -1,6 +1,6 @@
 # @chirpie/mcp
 
-**Post, schedule, and track social posts on X, Bluesky, LinkedIn, Instagram and more from AI agents.** Chirpie is one API for X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**The publishing connector for AI agents.** Chirpie is one API to post, thread and schedule to X/Twitter, Bluesky, LinkedIn, Mastodon and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics, with Threads, Instagram and Facebook coming soon. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
 
 ## Hosted server (recommended)
 
