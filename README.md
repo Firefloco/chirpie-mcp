@@ -32,7 +32,7 @@ claude mcp add --transport http chirpie https://chirpie.ai/mcp
 }
 ```
 
-**ChatGPT**: Settings → Connectors → Create → MCP server → `https://chirpie.ai/mcp`
+**ChatGPT** (web, developer mode): Settings → Apps → Create → MCP server URL `https://chirpie.ai/mcp` → OAuth → Scan Tools ([guide](https://chirpie.ai/docs/mcp/chatgpt))
 
 Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
 

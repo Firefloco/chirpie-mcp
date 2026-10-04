@@ -1,0 +1,98 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "chirpie",
+  "version": "1.0.0",
+  "description": "Publish, schedule and thread social posts to X, Bluesky, LinkedIn, Mastodon and Telegram, then read analytics and answer comments.",
+  "author": {
+    "name": "Fireflo LLC",
+    "email": "support@chirpie.ai",
+    "url": "https://chirpie.ai"
+  },
+  "homepage": "https://chirpie.ai/docs/mcp/chatgpt",
+  "repository": "https://github.com/Firefloco/chirpie-mcp",
+  "license": "MIT",
+  "keywords": ["social media", "publishing", "scheduling", "x", "bluesky", "linkedin", "mastodon", "telegram"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Chirpie",
+        "shortDescription": "Publish and schedule posts",
+        "longDescription": "Chirpie gives ChatGPT somewhere to publish. Connect your social accounts to Chirpie once, add the plugin, and ChatGPT can post, thread and schedule across them in plain language.\n\nWhat ChatGPT can do with Chirpie:\n- Publish a post or a thread now, or schedule it for a date and time in your timezone\n- Send one post to several accounts at once, with a different version per network\n- Attach images and video, with alt text\n- Save drafts, edit queued posts, and promote a draft when it is ready\n- Read engagement for any published post, and list, reply to, hide or delete comments\n- Connect new accounts from the conversation\n\nNetworks: X, Bluesky, LinkedIn, Mastodon and Telegram. Threads, Instagram and Facebook are coming soon.\n\nWho it is for: founders, marketers, creators and developers who want ChatGPT to handle their social publishing.\n\nEvery tool is annotated: read-only tools such as analytics are marked as such, and posting, editing and deleting are marked as writes, so ChatGPT can ask you to confirm them based on your app permissions. Threads publish all or nothing, and repeat calls carrying the same idempotency key never post twice.\n\nLimitations: Chirpie publishes only to accounts you have connected to it, and acts only on your own posts and comments. API keys are managed in the Chirpie dashboard, not from ChatGPT. Posts count against your Chirpie plan's monthly post quota.\n\nSign in with your Chirpie account; nothing to install and no API key to paste. The same account also works from Chirpie's REST API, TypeScript SDK and CLI.\n\nDocs: https://chirpie.ai/docs/mcp/chatgpt",
+        "developerName": "Fireflo LLC",
+        "category": "Productivity",
+        "capabilities": [
+          "Publish and schedule posts",
+          "Publish threads",
+          "Save and promote drafts",
+          "Read post analytics",
+          "Reply to and moderate comments"
+        ],
+        "websiteURL": "https://chirpie.ai",
+        "supportURL": "https://chirpie.ai/support",
+        "privacyPolicyURL": "https://chirpie.ai/privacy",
+        "termsOfServiceURL": "https://chirpie.ai/terms",
+        "defaultPrompt": [
+          "Post to X and Bluesky: \"We just shipped dark mode\", with a shorter version for Bluesky",
+          "Schedule a Mastodon post for tomorrow at 9am New York time announcing our webinar",
+          "How did my latest X post do? Summarize the replies and draft answers to the questions"
+        ],
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Lists the connected social accounts",
+              "prompt": "Which social accounts do I have connected to Chirpie?",
+              "tools_triggered": "chirpie_list_accounts",
+              "expected_behavior": "Runs as a read-only tool and names the connected X, Bluesky and Mastodon test accounts with their handles."
+            },
+            {
+              "description": "Cross-posts one announcement with a per-network version",
+              "prompt": "Post \"Chirpie QA: we just shipped dark mode\" to my X and Bluesky accounts, with a shorter version on Bluesky.",
+              "tools_triggered": "chirpie_list_accounts, chirpie_post",
+              "expected_behavior": "chirpie_post runs (after a confirmation if ChatGPT asks for one) and names both accounts in account_ids and gives Bluesky its own text in account_configurations. The answer reports one result per account with success true and a link to each live post."
+            },
+            {
+              "description": "Schedules a post in a named timezone",
+              "prompt": "Schedule a Mastodon post for tomorrow at 9am New York time: \"Chirpie QA: webinar reminder\".",
+              "tools_triggered": "chirpie_list_accounts, chirpie_post",
+              "expected_behavior": "chirpie_post (confirmed if ChatGPT asks) carries schedule_at for 09:00 tomorrow and timezone America/New_York. The post comes back with status scheduled and nothing is published yet."
+            },
+            {
+              "description": "Reads a post's analytics and replies",
+              "prompt": "How did my latest X post do? Summarize the replies.",
+              "tools_triggered": "chirpie_list_posts, chirpie_analytics, chirpie_list_comments",
+              "expected_behavior": "All three are read-only tools. The answer gives the post's engagement numbers and summarizes its replies, or says there are none."
+            },
+            {
+              "description": "Saves a thread as a draft without publishing",
+              "prompt": "Draft a three-part Bluesky thread about our changelog, starting each part with \"Chirpie QA\", and save it as a draft without posting.",
+              "tools_triggered": "chirpie_list_accounts, chirpie_thread",
+              "expected_behavior": "chirpie_thread (confirmed if ChatGPT asks) runs with three parts and draft true. The answer says the thread is saved as a draft; nothing reaches Bluesky and no quota is used."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Posting to an account that is not connected. The test account has no Instagram account, so nothing should be published; ChatGPT should say Instagram is not connected and offer the connected accounts instead.",
+              "prompt": "Post \"Chirpie QA: hello\" to my Instagram account."
+            },
+            {
+              "description": "Deleting another person's post. Chirpie only acts on posts it published for the signed-in customer, so no delete should be attempted; ChatGPT should explain it can only delete posts made through this Chirpie account.",
+              "prompt": "Delete the most recent post on @nasa's X account."
+            },
+            {
+              "description": "A request for financial advice, unrelated to publishing. No Chirpie tool should be called.",
+              "prompt": "Should I move my savings into Bitcoin or an index fund this month?"
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "First release: publish, schedule and thread posts to X, Bluesky, LinkedIn, Mastodon and Telegram, save and promote drafts, read analytics, and manage comments."
+      }
+    }
+  }
+}
