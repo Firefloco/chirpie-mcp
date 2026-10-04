@@ -167,8 +167,8 @@ back.
 
 `chirpie_post` and `chirpie_thread` take `first_comment`, a comment published
 under the post the moment it goes out. On a thread it is one comment for the
-whole thread, published under the last part. X, Threads, Instagram and Facebook
-only: anywhere else the call is refused with `400 first_comment_unsupported`
+whole thread, published under the last part. X only today (Threads, Instagram and
+Facebook coming soon): anywhere else the call is refused with `400 first_comment_unsupported`
 rather than the comment dropped. It counts as one post against the monthly
 quota.
 
