@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "chirpie",
+  "version": "1.0.0",
+  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn, Mastodon and Telegram, then read analytics and reply to comments from Kiro.",
+  "author": {
+    "name": "Fireflo LLC",
+    "email": "support@chirpie.ai",
+    "url": "https://chirpie.ai"
+  },
+  "homepage": "https://chirpie.ai/docs/mcp",
+  "repository": "https://github.com/Firefloco/chirpie-mcp",
+  "license": "MIT",
+  "keywords": [
+    "chirpie",
+    "social media",
+    "social post",
+    "publish post",
+    "schedule post",
+    "cross-post",
+    "thread",
+    "twitter",
+    "tweet",
+    "bluesky",
+    "linkedin",
+    "mastodon",
+    "telegram",
+    "post analytics"
+  ]
+}

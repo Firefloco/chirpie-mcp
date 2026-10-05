@@ -271,11 +271,21 @@ Once connected, ask your agent:
 - "Save that as a draft, I will pick the wording tomorrow."
 - "Connect my X account."
 
+## Kiro power
+
+The root of this repository is also a Kiro power in the Agent Plugins format:
+`plugin.json` names it and lists the keywords that activate it, and `mcp.json`
+points at the hosted server, `https://chirpie.ai/mcp`. You sign in to Chirpie
+in your browser the first time a tool runs, so there is no API key to paste.
+
 ## Links
 
 - Docs: https://chirpie.ai/docs/mcp
 - API reference: https://chirpie.ai/docs
 - Dashboard: https://chirpie.ai/dashboard
+- Privacy policy: https://chirpie.ai/privacy
+- Terms of service: https://chirpie.ai/terms
+- Support: https://chirpie.ai/support or support@chirpie.ai
 
 MIT © Fireflo LLC
 
