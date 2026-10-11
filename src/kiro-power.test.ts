@@ -59,10 +59,14 @@ describe("Kiro power manifest", () => {
   });
 
   it("names only live networks", () => {
+    // Threads, Instagram and Facebook went live once Meta App Review approved
+    // the app on 2026-10-10; the rest are still coming soon or not offered.
     for (const text of [plugin.description, ...plugin.keywords]) {
-      expect(text).not.toMatch(/Instagram|Facebook|Threads|TikTok|Pinterest|YouTube|Reddit|Snapchat/i);
+      expect(text).not.toMatch(/TikTok|Pinterest|YouTube|Reddit|Snapchat|Google Business/i);
     }
-    expect(plugin.description).toContain("X, Bluesky, LinkedIn, Mastodon and Telegram");
+    expect(plugin.description).toContain(
+      "X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram"
+    );
   });
 
   it("declares exactly one remote MCP server, the hosted endpoint", () => {

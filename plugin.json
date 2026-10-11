@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "chirpie",
   "version": "1.0.0",
-  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn, Mastodon and Telegram, then read analytics and reply to comments from Kiro.",
+  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, then read analytics and reply to comments from Kiro.",
   "author": {
     "name": "Fireflo LLC",
     "email": "support@chirpie.ai",
@@ -23,7 +23,10 @@
     "tweet",
     "bluesky",
     "linkedin",
+    "threads",
     "mastodon",
+    "instagram",
+    "facebook",
     "telegram",
     "post analytics"
   ]

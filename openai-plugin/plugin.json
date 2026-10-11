@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "chirpie",
   "version": "1.0.0",
-  "description": "Publish, schedule and thread social posts to X, Bluesky, LinkedIn, Mastodon and Telegram, then read analytics and answer comments.",
+  "description": "Publish, schedule and thread social posts to X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, then read analytics and answer comments.",
   "author": {
     "name": "Fireflo LLC",
     "email": "support@chirpie.ai",
@@ -11,13 +11,13 @@
   "homepage": "https://chirpie.ai/docs/mcp/chatgpt",
   "repository": "https://github.com/Firefloco/chirpie-mcp",
   "license": "MIT",
-  "keywords": ["social media", "publishing", "scheduling", "x", "bluesky", "linkedin", "mastodon", "telegram"],
+  "keywords": ["social media", "publishing", "scheduling", "x", "bluesky", "linkedin", "threads", "mastodon", "instagram", "facebook", "telegram"],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Chirpie",
         "shortDescription": "Publish and schedule posts",
-        "longDescription": "Chirpie gives ChatGPT somewhere to publish. Connect your social accounts to Chirpie once, add the plugin, and ChatGPT can post, thread and schedule across them in plain language.\n\nWhat ChatGPT can do with Chirpie:\n- Publish a post or a thread now, or schedule it for a date and time in your timezone\n- Send one post to several accounts at once, with a different version per network\n- Attach images and video, with alt text\n- Save drafts, edit queued posts, and promote a draft when it is ready\n- Read engagement for any published post, and list, reply to, hide or delete comments\n- Connect new accounts from the conversation\n\nNetworks: X, Bluesky, LinkedIn, Mastodon and Telegram. Threads, Instagram and Facebook are coming soon.\n\nWho it is for: founders, marketers, creators and developers who want ChatGPT to handle their social publishing.\n\nEvery tool is annotated: read-only tools such as analytics are marked as such, and posting, editing and deleting are marked as writes, so ChatGPT can ask you to confirm them based on your app permissions. Threads publish all or nothing, and repeat calls carrying the same idempotency key never post twice.\n\nLimitations: Chirpie publishes only to accounts you have connected to it, and acts only on your own posts and comments. API keys are managed in the Chirpie dashboard, not from ChatGPT. Posts count against your Chirpie plan's monthly post quota.\n\nSign in with your Chirpie account; nothing to install and no API key to paste. The same account also works from Chirpie's REST API, TypeScript SDK and CLI.\n\nDocs: https://chirpie.ai/docs/mcp/chatgpt",
+        "longDescription": "Chirpie gives ChatGPT somewhere to publish. Connect your social accounts to Chirpie once, add the plugin, and ChatGPT can post, thread and schedule across them in plain language.\n\nWhat ChatGPT can do with Chirpie:\n- Publish a post or a thread now, or schedule it for a date and time in your timezone\n- Send one post to several accounts at once, with a different version per network\n- Attach images and video, with alt text\n- Save drafts, edit queued posts, and promote a draft when it is ready\n- Read engagement for any published post, and list, reply to, hide or delete comments\n- Connect new accounts from the conversation\n\nNetworks: X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram.\n\nWho it is for: founders, marketers, creators and developers who want ChatGPT to handle their social publishing.\n\nEvery tool is annotated: read-only tools such as analytics are marked as such, and posting, editing and deleting are marked as writes, so ChatGPT can ask you to confirm them based on your app permissions. Threads publish all or nothing, and repeat calls carrying the same idempotency key never post twice.\n\nLimitations: Chirpie publishes only to accounts you have connected to it, and acts only on your own posts and comments. API keys are managed in the Chirpie dashboard, not from ChatGPT. Posts count against your Chirpie plan's monthly post quota.\n\nSign in with your Chirpie account; nothing to install and no API key to paste. The same account also works from Chirpie's REST API, TypeScript SDK and CLI.\n\nDocs: https://chirpie.ai/docs/mcp/chatgpt",
         "developerName": "Fireflo LLC",
         "category": "Productivity",
         "capabilities": [
@@ -46,7 +46,7 @@
               "description": "Lists the connected social accounts",
               "prompt": "Which social accounts do I have connected to Chirpie?",
               "tools_triggered": "chirpie_list_accounts",
-              "expected_behavior": "Runs as a read-only tool and names the connected X, Bluesky and Mastodon test accounts with their handles."
+              "expected_behavior": "Runs as a read-only tool and names the connected test accounts, such as X, Bluesky and Mastodon, with their handles."
             },
             {
               "description": "Cross-posts one announcement with a per-network version",
@@ -75,8 +75,8 @@
           ],
           "negative": [
             {
-              "description": "Posting to an account that is not connected. The test account has no Instagram account, so nothing should be published; ChatGPT should say Instagram is not connected and offer the connected accounts instead.",
-              "prompt": "Post \"Chirpie QA: hello\" to my Instagram account."
+              "description": "Posting to an account that is not connected. The test account has no Pinterest account, so nothing should be published; ChatGPT should say Pinterest is not connected and offer the connected accounts instead.",
+              "prompt": "Post \"Chirpie QA: hello\" to my Pinterest account."
             },
             {
               "description": "Deleting another person's post. Chirpie only acts on posts it published for the signed-in customer, so no delete should be attempted; ChatGPT should explain it can only delete posts made through this Chirpie account.",
@@ -91,7 +91,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "First release: publish, schedule and thread posts to X, Bluesky, LinkedIn, Mastodon and Telegram, save and promote drafts, read analytics, and manage comments."
+        "release_notes": "First release: publish, schedule and thread posts to X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, save and promote drafts, read analytics, and manage comments."
       }
     }
   }

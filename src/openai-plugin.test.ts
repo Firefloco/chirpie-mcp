@@ -57,10 +57,15 @@ describe("OpenAI plugin package", () => {
     }
   });
 
-  it("names only live networks, with the Meta ones as coming soon", () => {
-    expect(ui.longDescription).toContain("Threads, Instagram and Facebook are coming soon");
-    for (const text of [plugin.description, ui.shortDescription, ...ui.capabilities, ...ui.defaultPrompt]) {
-      expect(text).not.toMatch(/Instagram|Facebook|Threads|TikTok|Pinterest|YouTube|Reddit|Snapchat/);
+  it("names only live networks", () => {
+    // Threads, Instagram and Facebook went live once Meta App Review approved
+    // the app on 2026-10-10; the rest are still coming soon or not offered.
+    expect(ui.longDescription).toContain(
+      "X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram"
+    );
+    expect(ui.longDescription).not.toMatch(/coming soon/i);
+    for (const text of [plugin.description, ui.shortDescription, ui.longDescription, ...ui.capabilities, ...ui.defaultPrompt]) {
+      expect(text).not.toMatch(/TikTok|Pinterest|YouTube|Reddit|Snapchat|Google Business/);
     }
   });
 

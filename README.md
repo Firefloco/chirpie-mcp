@@ -1,6 +1,6 @@
 # @chirpie/mcp
 
-**The publishing connector for AI agents.** Chirpie is one API to post, thread and schedule to X/Twitter, Bluesky, LinkedIn, Mastodon and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics, with Threads, Instagram and Facebook coming soon. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**The publishing connector for AI agents.** Chirpie is one API to post, thread and schedule to X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
 
 ## Hosted server (recommended)
 
@@ -121,9 +121,9 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_connect_x` | Connect X/Twitter (returns an authorization link) |
 | `chirpie_connect_linkedin` | Connect a LinkedIn profile |
 | `chirpie_connect_linkedin_pages` | Connect the LinkedIn Pages you administer (coming soon) |
-| `chirpie_connect_threads` | Connect Threads (coming soon) |
-| `chirpie_connect_instagram` | Connect Instagram, `via` `instagram` (the default) or `facebook` (coming soon) |
-| `chirpie_connect_facebook` | Connect a Facebook Page (coming soon) |
+| `chirpie_connect_threads` | Connect Threads |
+| `chirpie_connect_instagram` | Connect Instagram, `via` `instagram` (the default) or `facebook` |
+| `chirpie_connect_facebook` | Connect a Facebook Page |
 | `chirpie_connect_bluesky` | Connect Bluesky with an app password |
 | `chirpie_connect_mastodon` | Connect Mastodon on any instance |
 | `chirpie_connect_telegram` | Connect a Telegram bot |
@@ -167,8 +167,8 @@ back.
 
 `chirpie_post` and `chirpie_thread` take `first_comment`, a comment published
 under the post the moment it goes out. On a thread it is one comment for the
-whole thread, published under the last part. X only today (Threads, Instagram and
-Facebook coming soon): anywhere else the call is refused with `400 first_comment_unsupported`
+whole thread, published under the last part. X, Threads, Instagram and Facebook
+only: anywhere else the call is refused with `400 first_comment_unsupported`
 rather than the comment dropped. It counts as one post against the monthly
 quota.
 
@@ -191,8 +191,7 @@ removes it.
 `chirpie_post`, `chirpie_thread` and `chirpie_update_post` take `configuration`,
 the per-platform publishing options, keyed by platform. Instagram takes a
 `feed` post, a `story` or a `reel`, and a Facebook Page takes a `feed` post or a
-`story`. Leave it out and everything publishes to the feed. Instagram and
-Facebook are coming soon.
+`story`. Leave it out and everything publishes to the feed.
 
 ```json
 {
