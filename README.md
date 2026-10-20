@@ -18,7 +18,7 @@ Sign in when prompted and you're connected. No API key to copy, nothing to keep 
 claude mcp add --transport http chirpie https://chirpie.ai/mcp
 ```
 
-**Claude**: add Chirpie from the [Claude Connectors Directory](https://claude.ai/directory/chirpie), or Customize → Connectors → + → Add custom connector → `https://chirpie.ai/mcp` ([guide](https://chirpie.ai/docs/mcp/claude))
+**Claude**: add Chirpie from the [Claude Connectors Directory](https://claude.ai/directory/chirpie), or Customize → Connectors → + → Add custom connector → `https://chirpie.ai/mcp` ([guide](https://chirpie.ai/docs/mcp/claude?utm_source=npm&utm_medium=readme&utm_campaign=mcp))
 
 **Cursor**: add to `.cursor/mcp.json`:
 
@@ -32,7 +32,7 @@ claude mcp add --transport http chirpie https://chirpie.ai/mcp
 }
 ```
 
-**ChatGPT** (web, developer mode): Settings → Apps → Create → MCP server URL `https://chirpie.ai/mcp` → OAuth → Scan Tools ([guide](https://chirpie.ai/docs/mcp/chatgpt))
+**ChatGPT** (web, developer mode): Settings → Apps → Create → MCP server URL `https://chirpie.ai/mcp` → OAuth → Scan Tools ([guide](https://chirpie.ai/docs/mcp/chatgpt?utm_source=npm&utm_medium=readme&utm_campaign=mcp))
 
 Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
 
@@ -279,12 +279,12 @@ in your browser the first time a tool runs, so there is no API key to paste.
 
 ## Links
 
-- Docs: https://chirpie.ai/docs/mcp
-- API reference: https://chirpie.ai/docs
-- Dashboard: https://chirpie.ai/dashboard
-- Privacy policy: https://chirpie.ai/privacy
-- Terms of service: https://chirpie.ai/terms
-- Support: https://chirpie.ai/support or support@chirpie.ai
+- Docs: https://chirpie.ai/docs/mcp?utm_source=npm&utm_medium=readme&utm_campaign=mcp
+- API reference: https://chirpie.ai/docs?utm_source=npm&utm_medium=readme&utm_campaign=mcp
+- Dashboard: https://chirpie.ai/dashboard?utm_source=npm&utm_medium=readme&utm_campaign=mcp
+- Privacy policy: https://chirpie.ai/privacy?utm_source=npm&utm_medium=readme&utm_campaign=mcp
+- Terms of service: https://chirpie.ai/terms?utm_source=npm&utm_medium=readme&utm_campaign=mcp
+- Support: https://chirpie.ai/support?utm_source=npm&utm_medium=readme&utm_campaign=mcp or support@chirpie.ai
 
 MIT © Fireflo LLC
 
