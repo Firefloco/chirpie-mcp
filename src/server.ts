@@ -18,5 +18,9 @@ export const SERVER_VERSION =
  * the hosted server at https://chirpie.ai/mcp describes itself identically.
  */
 export function createStdioServer(resolveClient: ChirpieApiResolver): McpServer {
-  return createChirpieMcpServer(SERVER_VERSION, resolveClient);
+  // This server runs on the user's own machine, so chirpie_upload_media can
+  // take a file path there. The hosted server never sets this.
+  return createChirpieMcpServer(SERVER_VERSION, resolveClient, {
+    localFiles: true,
+  });
 }

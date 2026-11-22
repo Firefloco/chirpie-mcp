@@ -100,7 +100,8 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 
 | Tool | What it does |
 |------|--------------|
-| `chirpie_upload_media` | Upload an image or video and get the id a post can attach. `idempotency_key` makes a retry safe |
+| `chirpie_upload_media` | Upload an image or video and get the id a post can attach. Takes a local file `path` at any supported size (up to 20 MB for an image, 512 MB for a video), a public `url`, base64 `data`, or the `upload_id` of a direct upload. `idempotency_key` makes a retry safe |
+| `chirpie_create_media_upload` | Start a direct upload for a large file when the file is not on this machine: returns an upload URL to send the bytes to, then `chirpie_upload_media` finishes it |
 | `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `configuration` publishes it as a story or a reel instead of a feed post; `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead; `allow_duplicate` repeats a text the account already posted within 12 hours, which is otherwise refused with `duplicate_post` |
 | `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. Takes `timezone` and `idempotency_key` too; `draft` saves it instead |
 | `chirpie_list_posts` | List posts a page at a time, filtered by status, account, network, the group of a multi-account publish, a time range (`from`/`to`, matching scheduled or publish time) or words in the text (`q`). Answers `{ posts, has_more, next_offset }` |
@@ -151,7 +152,7 @@ tools are not marked idempotent: the ones that take an `idempotency_key` only
 make a retry safe when you pass one. Without a key, repeating `chirpie_post`,
 `chirpie_thread`, `chirpie_reply_to_comment` or `chirpie_retry_first_comment`
 can publish twice, and repeating `chirpie_upload_media` stores a second copy
-that expires unused.
+that expires unused (completing the same direct upload twice does not).
 
 ## Several accounts in one call
 
