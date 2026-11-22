@@ -101,9 +101,9 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | Tool | What it does |
 |------|--------------|
 | `chirpie_upload_media` | Upload an image or video and get the id a post can attach. `idempotency_key` makes a retry safe |
-| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `configuration` publishes it as a story or a reel instead of a feed post; `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead |
+| `chirpie_post` | Post to any connected account, now or scheduled, or to several at once. `configuration` publishes it as a story or a reel instead of a feed post; `timezone` reads a `schedule_at` with no offset in an IANA zone; `idempotency_key` makes a retry safe; `draft` saves it instead; `allow_duplicate` repeats a text the account already posted within 24 hours, which is otherwise refused with `duplicate_post` |
 | `chirpie_thread` | Post a 2-25 part thread, to one account or to several at once. Takes `timezone` and `idempotency_key` too; `draft` saves it instead |
-| `chirpie_list_posts` | List posts, filtered by status, account, or the group of a multi-account publish |
+| `chirpie_list_posts` | List posts a page at a time, filtered by status, account, network, the group of a multi-account publish, a time range (`from`/`to`, matching scheduled or publish time) or words in the text (`q`). Answers `{ posts, has_more, next_offset }` |
 | `chirpie_get_post` | Fetch one post |
 | `chirpie_update_post` | Edit a post that has not published yet, or finish a draft and schedule or publish it. `configuration` changes where it publishes |
 | `chirpie_retry_first_comment` | Post a first comment that failed, again. `idempotency_key` makes a retry safe |
