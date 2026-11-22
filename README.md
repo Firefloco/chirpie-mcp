@@ -212,8 +212,9 @@ the per-platform publishing options, keyed by platform. Instagram takes a
 
 Each placement carries its own options:
 
-- `instagram` `feed`: up to 10 images, `collaborators` (at most 3 usernames)
-  and `user_tags`, each of which needs both `x` and `y`.
+- `instagram` `feed`: up to 10 images and videos (one video on its own is
+  published as a reel), `collaborators` (at most 3 usernames) and `user_tags`
+  on a single image only, each of which needs both `x` and `y`.
 - `instagram` `story`: exactly one image or video, no caption (send empty
   text), no first comment and no collaborators. `user_tags` may carry
   coordinates or leave them out.
@@ -221,7 +222,8 @@ Each placement carries its own options:
   `user_tags` (the username on its own, since Instagram reads coordinates only
   on images and stories), `cover` or `video_cover_timestamp_ms` but never both,
   `share_to_feed` and `trial_reel`.
-- `facebook` `feed`: a `link`, shown as a preview.
+- `facebook` `feed`: a `link`, shown as a preview (not on a video post, which
+  takes no link).
 - `facebook` `story`: exactly one image or video, no text, no first comment
   and no link.
 
