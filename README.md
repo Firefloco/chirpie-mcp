@@ -1,40 +1,25 @@
 # @chirpie/mcp
 
-**The publishing connector for AI agents.** Chirpie is one API to post, thread and schedule to X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, covering posting, threads, scheduling, drafts, deletion and analytics. This MCP server puts all of it in front of Claude, Cursor, ChatGPT or any other MCP-capable agent, so "post this to X and LinkedIn, and schedule the follow-up for 9am" is a single sentence rather than a pile of platform SDKs, OAuth dances and rate-limit handling.
+**Most people should use the hosted server, not this package.** Chirpie (chirpie.ai) is the publishing connector for AI agents, and its MCP server is hosted at `https://chirpie.ai/mcp`: add it to your AI app, sign in, and your agent can post, thread and schedule to X/Twitter, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram, with images and video on every network, drafts, comments and analytics. Nothing to install, no API key to paste, and always the current version.
 
-## Hosted server (recommended)
+## Connect in one step
 
-You don't need to install anything. Point your client at:
+| App | How |
+|-----|-----|
+| **Claude** (claude.ai, Desktop, mobile) | Add Chirpie from the [Claude Connectors Directory](https://claude.ai/directory/chirpie) and sign in |
+| **Claude Code** | `claude mcp add --transport http chirpie https://chirpie.ai/mcp`, then `/mcp` to sign in. Or the plugin, which adds the Chirpie skills too: `/plugin marketplace add Firefloco/chirpie-skills` then `/plugin install chirpie@chirpie-skills` |
+| **Cursor** | [Add to Cursor](https://cursor.com/en/install-mcp?name=chirpie&config=eyJ1cmwiOiJodHRwczovL2NoaXJwaWUuYWkvbWNwIn0%3D), or `{ "mcpServers": { "chirpie": { "url": "https://chirpie.ai/mcp" } } }` in `~/.cursor/mcp.json` |
+| **VS Code** | [Install in VS Code](https://vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522chirpie%2522%252C%2522type%2522%253A%2522http%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fchirpie.ai%252Fmcp%2522%257D), or `code --add-mcp '{"name":"chirpie","type":"http","url":"https://chirpie.ai/mcp"}'` |
+| **ChatGPT** (web) | Plugins, **+**, **Add custom MCP server**, URL `https://chirpie.ai/mcp`, OAuth. Posting needs a Business, Enterprise or Education workspace |
+| **Codex** | `codex mcp add chirpie --url https://chirpie.ai/mcp`, then `codex mcp login chirpie` |
+| **Gemini CLI** | `gemini mcp add --transport http chirpie https://chirpie.ai/mcp`, then `/mcp auth chirpie` |
+| **Windsurf** | `{ "mcpServers": { "chirpie": { "serverUrl": "https://chirpie.ai/mcp" } } }` in the MCP config file Cascade's MCP settings open |
+| **Manus** | Connectors, Create, Add MCP by URL: `https://chirpie.ai/mcp` with a scoped API key as the bearer token |
+| **n8n, any MCP client** | Add `https://chirpie.ai/mcp` as a remote (Streamable HTTP) server and sign in |
 
-```
-https://chirpie.ai/mcp
-```
+Step-by-step guides for every app: https://chirpie.ai/docs/mcp?utm_source=npm&utm_medium=readme&utm_campaign=mcp
 
-Sign in when prompted and you're connected. No API key to copy, nothing to keep up to date.
-
-**Claude Code**
-
-```bash
-claude mcp add --transport http chirpie https://chirpie.ai/mcp
-```
-
-**Claude**: add Chirpie from the [Claude Connectors Directory](https://claude.ai/directory/chirpie), or Customize → Connectors → + → Add custom connector → `https://chirpie.ai/mcp` ([guide](https://chirpie.ai/docs/mcp/claude?utm_source=npm&utm_medium=readme&utm_campaign=mcp))
-
-**Cursor**: add to `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "chirpie": {
-      "url": "https://chirpie.ai/mcp"
-    }
-  }
-}
-```
-
-**ChatGPT** (web, developer mode): Settings → Apps → Create → MCP server URL `https://chirpie.ai/mcp` → OAuth → Scan Tools ([guide](https://chirpie.ai/docs/mcp/chatgpt?utm_source=npm&utm_medium=readme&utm_campaign=mcp))
-
-Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
+When you sign in you choose **Full access** or **Read only**, and Chirpie enforces the choice on every call. Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
 
 ```json
 {
@@ -48,9 +33,9 @@ Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as
 }
 ```
 
-## Local server (this package)
+## Advanced: run it locally (this package)
 
-Run the same tool set locally over stdio.
+Run the same tool set on your own machine over stdio. Use it when a client speaks nothing but stdio, or when the agent should read large files straight from your disk with `path`.
 
 ```bash
 npm install -g chirpie
@@ -60,7 +45,7 @@ chirpie login
 **Claude Code**
 
 ```bash
-claude mcp add chirpie -- npx @chirpie/mcp
+claude mcp add chirpie -- npx -y @chirpie/mcp
 ```
 
 **Claude Desktop**: `~/Library/Application Support/Claude/claude_desktop_config.json`:
@@ -70,7 +55,7 @@ claude mcp add chirpie -- npx @chirpie/mcp
   "mcpServers": {
     "chirpie": {
       "command": "npx",
-      "args": ["@chirpie/mcp"]
+      "args": ["-y", "@chirpie/mcp"]
     }
   }
 }
@@ -83,7 +68,7 @@ claude mcp add chirpie -- npx @chirpie/mcp
   "mcpServers": {
     "chirpie": {
       "command": "npx",
-      "args": ["@chirpie/mcp"]
+      "args": ["-y", "@chirpie/mcp"]
     }
   }
 }

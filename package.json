@@ -1,8 +1,8 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "mcpName": "io.github.Firefloco/chirpie",
-  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn and more.",
+  "description": "Chirpie (chirpie.ai): the publishing connector for AI agents. Most people use the hosted server at https://chirpie.ai/mcp; this package runs the same tools locally.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firefloco/chirpie",
@@ -30,6 +30,10 @@
     "ai",
     "claude",
     "cursor",
+    "chatgpt",
+    "vscode",
+    "codex",
+    "remote-mcp",
     "agent",
     "social-media",
     "x",
@@ -40,11 +44,7 @@
     "mastodon",
     "instagram",
     "facebook",
-    "telegram",
-    "pinterest",
-    "tiktok",
-    "youtube",
-    "google-business"
+    "telegram"
   ],
   "license": "MIT",
   "dependencies": {

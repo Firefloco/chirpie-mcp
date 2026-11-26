@@ -1,7 +1,7 @@
 {
   "name": "chirpie",
   "version": "1.0.0",
-  "description": "The publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram from Gemini CLI.",
+  "description": "Chirpie (chirpie.ai), the publishing connector for AI agents: post, schedule and thread to X, Bluesky, LinkedIn, Threads, Mastodon, Instagram, Facebook and Telegram from Gemini CLI.",
   "mcpServers": {
     "chirpie": {
       "httpUrl": "https://chirpie.ai/mcp"
