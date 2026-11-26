@@ -111,7 +111,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_delete_post` | Take a post down from the platform. Chirpie keeps it, marked deleted |
 | `chirpie_hide_post` | Hide a post from your Chirpie listings. Nothing reaches the platform |
 | `chirpie_unhide_post` | Put a hidden post back in your listings |
-| `chirpie_list_accounts` | List connected social accounts, active and inactive |
+| `chirpie_list_accounts` | List connected social accounts, active and inactive. With none connected it names the connect tools in `next_step` |
 | `chirpie_activate_account` | Activate an account so it can publish |
 | `chirpie_deactivate_account` | Deactivate an account (stays connected, frees a plan slot) |
 | `chirpie_disconnect_account` | Disconnect an account (ends the connection, cancels its scheduled posts, frees a plan slot) |
@@ -119,7 +119,7 @@ The CLI and this server share that config, so one `chirpie login` covers both.
 | `chirpie_create_key` | Create an API key, optionally narrowed with `scopes` so it can do less than yours |
 | `chirpie_list_keys` | List API keys |
 | `chirpie_revoke_key` | Revoke an API key |
-| `chirpie_connect_x` | Connect X/Twitter (returns an authorization link) |
+| `chirpie_connect_x` | Connect X/Twitter (returns a chirpie.ai link to open in a browser, where you sign in if asked and approve on X) |
 | `chirpie_connect_linkedin` | Connect a LinkedIn profile |
 | `chirpie_connect_linkedin_pages` | Connect the LinkedIn Pages you administer (coming soon) |
 | `chirpie_connect_threads` | Connect Threads |
