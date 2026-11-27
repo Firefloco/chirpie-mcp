@@ -8,18 +8,20 @@
 |-----|-----|
 | **Claude** (claude.ai, Desktop, mobile) | Add Chirpie from the [Claude Connectors Directory](https://claude.ai/directory/chirpie) and sign in |
 | **Claude Code** | `claude mcp add --transport http chirpie https://chirpie.ai/mcp`, then `/mcp` to sign in. Or the plugin, which adds the Chirpie skills too: `/plugin marketplace add Firefloco/chirpie-skills` then `/plugin install chirpie@chirpie-skills` |
-| **Cursor** | [Add to Cursor](https://cursor.com/en/install-mcp?name=chirpie&config=eyJ1cmwiOiJodHRwczovL2NoaXJwaWUuYWkvbWNwIn0%3D), or `{ "mcpServers": { "chirpie": { "url": "https://chirpie.ai/mcp" } } }` in `~/.cursor/mcp.json` |
+| **Cursor** | [Add to Cursor](https://cursor.com/install-mcp?name=chirpie&config=eyJ1cmwiOiJodHRwczovL2NoaXJwaWUuYWkvbWNwIn0%3D), or `{ "mcpServers": { "chirpie": { "url": "https://chirpie.ai/mcp" } } }` in `~/.cursor/mcp.json` |
 | **VS Code** | [Install in VS Code](https://vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522chirpie%2522%252C%2522type%2522%253A%2522http%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fchirpie.ai%252Fmcp%2522%257D), or `code --add-mcp '{"name":"chirpie","type":"http","url":"https://chirpie.ai/mcp"}'` |
 | **ChatGPT** (web) | Plugins, **+**, **Add custom MCP server**, URL `https://chirpie.ai/mcp`, OAuth. Posting needs a Business, Enterprise or Education workspace |
 | **Codex** | `codex mcp add chirpie --url https://chirpie.ai/mcp`, then `codex mcp login chirpie` |
 | **Gemini CLI** | `gemini mcp add --transport http chirpie https://chirpie.ai/mcp`, then `/mcp auth chirpie` |
 | **Windsurf** | `{ "mcpServers": { "chirpie": { "serverUrl": "https://chirpie.ai/mcp" } } }` in the MCP config file Cascade's MCP settings open |
-| **Manus** | Connectors, Create, Add MCP by URL: `https://chirpie.ai/mcp` with a scoped API key as the bearer token |
-| **n8n, any MCP client** | Add `https://chirpie.ai/mcp` as a remote (Streamable HTTP) server and sign in |
+| **Manus** | Connectors, Create, **Import MCP by JSON**: `{ "mcpServers": { "chirpie": { "url": "https://chirpie.ai/mcp", "headers": { "Authorization": "Bearer chirpie_sk_..." } } } }` with a scoped API key |
+| **Meta Muse** | In a conversation, ask Muse to add a custom connector for the remote MCP server `https://chirpie.ai/mcp`, then approve the Chirpie sign-in link it sends |
+| **n8n** | MCP Client Tool, HTTP Streamable, endpoint `https://chirpie.ai/mcp`, MCP OAuth2 credential. OAuth needs n8n served over https or on localhost; otherwise use a scoped API key as a bearer header |
+| **Any MCP client** | Add `https://chirpie.ai/mcp` as a remote (Streamable HTTP) server and sign in |
 
 Step-by-step guides for every app: https://chirpie.ai/docs/mcp?utm_source=npm&utm_medium=readme&utm_campaign=mcp
 
-When you sign in you choose **Full access** or **Read only**, and Chirpie enforces the choice on every call. Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header:
+When you sign in you choose **Full access** or **Read only**, and Chirpie enforces the choice on every call. Prefer a key over OAuth (CI, scripts, clients without an OAuth flow)? Send it as a header. This is the Claude Code and Cursor shape; in other clients, add the same `headers` entry to that client's own server entry:
 
 ```json
 {
