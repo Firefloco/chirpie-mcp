@@ -1,6 +1,6 @@
 {
   "name": "@chirpie/mcp",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "mcpName": "io.github.Firefloco/chirpie",
   "description": "Chirpie (chirpie.ai): the publishing connector for AI agents. Most people use the hosted server at https://chirpie.ai/mcp; this package runs the same tools locally.",
   "repository": {

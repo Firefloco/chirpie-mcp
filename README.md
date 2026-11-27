@@ -80,6 +80,7 @@ The local server resolves credentials in this order:
 
 1. `CHIRPIE_API_KEY` environment variable
 2. `~/.chirpie/config.json` (written by `chirpie login`)
+3. Neither: the server signs itself in. The first tool call answers `login_required` with a chirpie.ai link and a code for the person to approve (one tap, and the page creates an account if they have none). Once they have, the key is saved to `~/.chirpie/config.json` and the next call works, with no restart.
 
 The CLI and this server share that config, so one `chirpie login` covers both.
 
